@@ -1,6 +1,5 @@
 package com.bridgelab.permutationsofastring;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /*******************************************************************
@@ -13,17 +12,12 @@ import java.util.Scanner;
 
 public class PermutationsOfString
 {
-	static String[] recusrsionArray, iterativeArray;
-	static int fact = 1, counter = 0, iteCounter = 0;
-	
 	//finding string possible permutation using recursion method.
 	public static void recursion(String question, String asnwer)
 	{	
 		if(question.length() == 0)
 		{
-			//storing each permutation in array.
-			recusrsionArray[counter] = asnwer;
-			counter ++;
+			System.out.print(asnwer + "\t");
 			return;
 		}
 		
@@ -56,14 +50,12 @@ public class PermutationsOfString
 				int q = temp / div;
 				int r = temp % div;
 				
-				System.out.println(sb.charAt(r));
-				iterativeArray[iteCounter] = String.valueOf(sb.charAt(r));
-				iteCounter ++;
+				System.out.print(sb.charAt(r));
 				sb.deleteCharAt(r);
 				
 				temp = q;
 			}
-			System.out.println();
+			System.out.print("\t");
 		}
 	}
 	
@@ -77,35 +69,15 @@ public class PermutationsOfString
 		return val;
 	}
 	
-	/**
-	 * printing the array that holds permutation of string.
-	 */
-	public static void printArray()
-	{
-		System.out.println("Permutation of a string using iterative method : " + Arrays.toString(iterativeArray));
-		System.out.println("Permutation of a string using recursive method : " + Arrays.toString(recusrsionArray));
-	}
-	
 	public static void main(String[] args)
 	{
 		Scanner scannerObject = new Scanner(System.in);
 		System.out.print("Enter The String : ");
 		String userString = scannerObject.next();
-		
-		/*permutation will always be string lenght factorial i.e n!
-		 * factorial number will be the size of an array to store the all permutation.
-		 */
-		int num = userString.length();
-		for(int i = 2; i <= num; i++)
-		{
-			fact *= i;
-		}
-		recusrsionArray = new String[fact];
-		iterativeArray = new String[fact];
-		
+		System.out.print("Recurssion output : \t");
 		recursion(userString,"");
+		System.out.print("\nItertive output : \t");
 		iterative(userString);
 		scannerObject.close();
-		printArray();
 	}
 }
